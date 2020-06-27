@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- services -->
-	<bean class="com.motiveko.testmaven.cli.Dao" />
+	<!-- services -->
+	<!-- Static Factory Method -->
+<!-- 	<bean id="dao" class="com.motiveko.testmaven.cli.Dao" factory-method="createDao"/> -->
+
+	<!-- Instance Factory Method -->
+	<bean id="connectionFactory" class="com.motiveko.testmaven.cli.ConnectionFactory" >
+		<constructor-arg name="url" value="jdbc:h2:mem:test"/>
+		<constructor-arg name="user" value="sa"/>
+		<constructor-arg name="password" value=""/>
+	</bean>
+
 	
+	<bean id="connection" class="java.sql.Connection"
+			factory-bean="connectionFactory"
+			factory-method="creatConnection"/>
+	
+	<bean id="dao" class="com.motiveko.testmaven.cli.Dao" lazy-init="true">
+		<constructor-arg ref="connection" />		 
+	</bean>
+	
+	<bean id="dao2" class="com.motiveko.testmaven.cli.Dao2">
+		<constructor-arg ref="connection" />		 
+	</bean>
+
 
 
 </beans>

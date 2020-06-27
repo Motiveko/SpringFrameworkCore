@@ -1,31 +1,18 @@
 package com.motiveko.testmaven.cli;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import lombok.extern.slf4j.Slf4j;
 
-//Data Access Object, db관련 코드는 다 여기로 몰아넣는다.
-@Slf4j // Logger를 log라는 변수로 바로 사용 가능하다.
-public class Dao {
-
-	// 임의로 생성하지 못하게 default constructor는 막아놓는다
-//	private Dao() {};
-//	private static Dao dao = new Dao();		
-//	//Instantiation with a Static Factory Method
-//	public static Dao createDao() {
-//		System.out.println("createDao!");
-//		return dao;
-//	}
+@Slf4j
+public class Dao2 {
 	
-	
-	// Dao.xml 에서 Dao의 Bean에서 connection의 DI가 이뤄졌다.
 	private Connection connection; 
 
-	public Dao(Connection connection) {
+	public Dao2(Connection connection) {
 		this.connection = connection;
 	}
 	
@@ -60,7 +47,6 @@ public class Dao {
 		}
 		log.info("Bye World!");
 
-		// finally{ resource.close} 해줘야 하나 try에 resource가 선언되어서 불필요해졌따...맞나몰겠네
-
 	}
 }
+
