@@ -63,4 +63,12 @@ public class Dao {
 		// finally{ resource.close} 해줘야 하나 try에 resource가 선언되어서 불필요해졌따...맞나몰겠네
 
 	}
+
+	public void init() {
+		log.info("Dao init()");
+	}
+	public void cleanUp() {
+		log.info("Dao cleanUp()");
+	}
+	
 }
