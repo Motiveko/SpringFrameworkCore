@@ -1,26 +1,34 @@
 package com.motiveko.testmaven.cli;
 
-import org.springframework.beans.BeansException;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+
 
 import lombok.extern.slf4j.Slf4j;
 
+// @Autowired : 생성자, setter, field에 넣어줄 수 있다. 자동으로 컨테이너에 있는 객체를 주입해준다.
+// @Inject와 매우 비슷하다.
+//@Component
 @Slf4j
-public class A implements ApplicationContextAware {
+public class A {
 
-	//특정 bean에서 ApplicationContext를 쓰고싶다면 implements ApplicationContextAware 해주고 set메서드 구현해주면 가능하다.
-	
-	private ApplicationContext applicationContext;
-	
-	public void init() {
-		log.info(""+applicationContext);
-	}
-	
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
+	private B b;	
+	// Aware~Interface 구현 안해도 이렇게 해서 applicationcontext넣어줄수잇따.
+
+	public A (B b) {
+		this.b = b;
 	}
 
 	
+	
+	void init() { 
+		log.info("b ::: "+ b);
+	}
+
+	void destroy() { }
 }

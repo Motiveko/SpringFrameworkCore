@@ -6,7 +6,7 @@
 	<groupId>com.motiveko</groupId>
 	<artifactId>testmaven</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>testmaven</name>
 	<url>http://maven.apache.org</url>
@@ -44,28 +44,45 @@
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 		</dependency>
-		
+
 		<!-- Test를 위한 JUnit dependency 설정 -->
 		<dependency>
-		    <groupId>org.junit.platform</groupId>
-		    <artifactId>junit-platform-launcher</artifactId>
-		    <version>1.6.2</version>
-		    <scope>test</scope>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.6.2</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.junit.jupiter</groupId>
-		    <artifactId>junit-jupiter-engine</artifactId>
-		    <version>5.6.2</version>
-		    <scope>test</scope>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
-		    <groupId>org.junit.vintage</groupId>
-		    <artifactId>junit-vintage-engine</artifactId>
-		    <version>5.6.2</version>
-		    <scope>test</scope>
-		</dependency>		
-		
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>5.6.2</version>
+			<scope>test</scope>
+		</dependency>
 
+		<!-- 자바에서 @ComponentScan 으로 class들을 scan할 때 불필요한 불필요한 class는 스캔하지 않도록 해주는 
+			것 -->
+		<!-- 처음에 스캔할 때 @Component 붙은 요소를 다 읽어서 META-INF에 spring.components 파일로 
+			key-value로 저장함, 다시사용시 이를 계속 읽어서 불필요한 스캔을 없앰 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-indexer</artifactId>
+			<version>5.1.8.RELEASE</version>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Using JSR 330 Standard Annotations -->
+		<!-- javax.servlet처럼 이것도 spec이고 interface이다. 기존 spring annotation을 jsr330형식으로 으로 쓴다.(ex. autowirde->inject ..) 별루안중요 -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 	</dependencies>
 	<build>
 
@@ -97,15 +114,15 @@
 				</executions>
 			</plugin>
 			<!-- Test를 위한 JUnit plugin -->
-	        <plugin>
-	            <artifactId>maven-surefire-plugin</artifactId>
-	            <version>2.22.2</version>
-	        </plugin>
-	        <plugin>
-	            <artifactId>maven-failsafe-plugin</artifactId>
-	            <version>2.22.2</version>
-	        </plugin>
-			
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.2</version>
+			</plugin>
+
 		</plugins>
 	</build>
 

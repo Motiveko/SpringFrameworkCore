@@ -1,7 +1,6 @@
 package com.motiveko.testmaven.cli;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,7 +52,7 @@ public class Dao {
 		ResultSet resultSet = statement.executeQuery("select id, username, password from member");
 		// resultset의 커서는 맨 처음에는 아무것도 안가르키고 있다가 next하면 첫 프레임으로, 계속 다음 프레임으로 넘어가며
 		// 프레임이 존재하면 true 없으면 false를 반환한다.
-		while (resultSet.next()) {
+		while (resultSet.next()) { 
 			// OOP를 활용한 코드의 간소화
 			Member member = new Member(resultSet);
 			log.info(member.toString());
@@ -65,10 +64,10 @@ public class Dao {
 	}
 
 	public void init() {
-		log.info("Dao init()");
+//		log.info("Dao init()");
 	}
 	public void cleanUp() {
-		log.info("Dao cleanUp()");
+//		log.info("Dao cleanUp()");
 	}
 	
 }

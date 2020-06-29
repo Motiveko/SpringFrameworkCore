@@ -1,39 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans default-init-method="init" default-destroy-method="cleanup"
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-        https://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- services -->
-	<!-- Static Factory Method -->
-<!-- 	<bean id="dao" class="com.motiveko.testmaven.cli.Dao" factory-method="createDao"/> -->
-
-	<!-- Instance Factory Method -->
-	<bean id="connectionFactory" 
-			class="com.motiveko.testmaven.cli.ConnectionFactory" >
-		<constructor-arg name="driverClass" value="org.h2.Driver" />
+ 	<context:annotation-config/>
+ 	<context:property-placeholder location="classpath:application.properties"/>
+ 	
+    <beans profile="default">
 	
-		<constructor-arg name="url" value="jdbc:h2:mem:test"/>
-		<constructor-arg name="user" value="sa"/>
-		<constructor-arg name="password" value=""/>
-	</bean>
-
+		<!-- services -->
+		<!-- Static Factory Method -->
+		<!-- <bean id="dao" class="com.motiveko.testmaven.cli.Dao" factory-method="createDao"/> -->
+		<!-- Instance Factory Method -->
+		<bean id="connectionFactory" 
+				class="com.motiveko.testmaven.cli.ConnectionFactory" >
+			<constructor-arg name="driverClass" value="org.h2.Driver" />
+			<constructor-arg name="url" value="jdbc:h2:mem:test"/>
+			<constructor-arg name="user" value="sa"/>
+			<constructor-arg name="password" value=""/>
+		</bean>
 	
-	<bean id="connection" class="java.sql.Connection"
-			factory-bean="connectionFactory"
-			factory-method="createConnection"/>
-	<!-- laze-init : 사용할때 생성한다, 아니면 그냥 container가 생성될 때 xml에 있는거 다생성한다. -->
-	<bean id="dao" class="com.motiveko.testmaven.cli.Dao" lazy-init="true">
-		<constructor-arg ref="connection" />		 
-	</bean>
+		<bean id="connection" class="java.sql.Connection"
+				factory-bean="connectionFactory"
+				factory-method="createConnection"/>
+		<bean id="dao" class="com.motiveko.testmaven.cli.Dao" lazy-init="true">
+			<constructor-arg ref="connection" />		 
+		</bean>
+		
+		<bean id="dao2" class="com.motiveko.testmaven.cli.Dao2">
+			<constructor-arg ref="connection" />		 
+		</bean>
+		
+		<!-- <bean class="com.motiveko.testmaven.cli.B" /> -->
+		
+		<bean class="com.motiveko.testmaven.cli.AppConfig" />
+		<bean class="com.motiveko.testmaven.cli.A" />
+		
+    </beans>
+    
+    <beans profile="dev">
+ 		<bean id="connectionFactory" 
+				class="com.motiveko.testmaven.cli.ConnectionFactory" >	
+			<constructor-arg name="driverClass" value="org.h2.Driver" />
+			<constructor-arg name="url" value="jdbc:h2:file:~/test"/>
+			<constructor-arg name="user" value="sa"/>
+			<constructor-arg name="password" value=""/>
+		</bean>   
+		
+		<bean id="connection" class="java.sql.Connection"
+				factory-bean="connectionFactory"
+				factory-method="createConnection"/>
+		<bean id="dao" class="com.motiveko.testmaven.cli.Dao" lazy-init="true">
+			<constructor-arg ref="connection" />		 
+		</bean>
+		
+		<bean id="dao2" class="com.motiveko.testmaven.cli.Dao2">
+			<constructor-arg ref="connection" />		 
+		</bean>
+		
+		<!-- <bean class="com.motiveko.testmaven.cli.B" /> -->
+		
+		<bean class="com.motiveko.testmaven.cli.AppConfig" />
+		<bean class="com.motiveko.testmaven.cli.A" />
+    
+    </beans>
 	
-	<bean id="dao2" class="com.motiveko.testmaven.cli.Dao2">
-		<constructor-arg ref="connection" />		 
-	</bean>
-	
-	<bean class="com.motiveko.testmaven.cli.A"></bean>
-
 
 
 </beans>
