@@ -15,17 +15,7 @@ import org.springframework.context.annotation.PropertySource;
 //로직은 같고 사용하는 값만 다를 때 이렇게 할 수 잇따.
 @PropertySource("classpath:application-${spring.profiles.active}.properties") 
 public class AppConfig {
-	
-	//coonection factory생성시에 url값만 다르기때문에 나머지는 다 빼서 AppConfig에 공통으로 사용한다.
-	@Bean
-	public B b() {
-		return new B();
-	}
-					//@PostConstruct, @PreDestory 를 A에 써주는 것은 해당 빈에 설정값을 넣는것이므로 지양한다. 클래스에는 클래스 로직만 들어가게!
-	@Bean(initMethod = "init", destroyMethod = "destroy")
-	public A a(B b) {
-		return new A(b);
-	}
+
 	
 	@Bean
 	public Connection connection(ConnectionFactory connectionFactory) {
