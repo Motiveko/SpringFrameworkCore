@@ -9,8 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 
 //Data Access Object, db관련 코드는 다 여기로 몰아넣는다.
 @Slf4j // Logger를 log라는 변수로 바로 사용 가능하다.
-public class Dao {
 
+public class Dao {
+	
 	// 임의로 생성하지 못하게 default constructor는 막아놓는다
 //	private Dao() {};
 //	private static Dao dao = new Dao();		
