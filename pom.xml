@@ -12,8 +12,8 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<dependencies>
@@ -76,13 +76,49 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- validation, jsr303 -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+
+		<!-- 이거를 추가해줘야 validatorfactoryBean에서 오류가 안난다. https://lemontia.tistory.com/925 
+			를 참조했다.. 추가안하면 javax.el.~가 없다고 자꾸나온다. -->
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<!-- Bean Validaton provier, localValidatorFactoryBean사용하기 위해서 필요하다 , 이 
+			안에 validation-api가 들어있으므로 위의 중복된 의존성은 지운다. -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.15.Final</version>
+		</dependency>
 		<!-- Using JSR 330 Standard Annotations -->
-		<!-- javax.servlet처럼 이것도 spec이고 interface이다. 기존 spring annotation을 jsr330형식으로 으로 쓴다.(ex. autowirde->inject ..) 별루안중요 -->
+		<!-- javax.servlet처럼 이것도 spec이고 interface이다. 기존 spring annotation을 jsr330형식으로 
+			으로 쓴다.(ex. autowirde->inject ..) 별루안중요 -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+
+		<!-- aspectJ, Schema-based AOP를 위한 dependencies -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.9.4</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 

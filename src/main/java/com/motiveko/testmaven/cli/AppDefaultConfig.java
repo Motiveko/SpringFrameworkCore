@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 
 // bean 설정으로 등록이 되면서 이 객체가 spring설정에 대해서 관련있는 bean이라는것을 알려준다.
 // anotaion 설명 읽으면 이해댐
-//@ComponentScan(basePackageClasses = AppConfig.class) // Main클래스들어있는 패키지 하위로 스캔한다.
+//@ComponentScan(basePackageClasses = AppConfig.class) // Main클래스들어있는 패키지 하위로 스캔한다. 
 //@Configuration
 //@Profile("default")
 @PropertySource("classpath:application-${spring.profiles.active}.properties")

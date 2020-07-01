@@ -62,13 +62,9 @@
 			<constructor-arg ref="connection" />		 
 		</bean>
 		
-		<!-- <bean class="com.motiveko.testmaven.cli.B" /> -->
-		
+		<!-- <bean class="com.motiveko.testmaven.cli.B" /> -->		
 		<bean class="com.motiveko.testmaven.cli.AppConfig" />
-		<bean class="com.motiveko.testmaven.cli.A" />
-    
-    </beans>
-	
 
+    </beans>
 
 </beans>
