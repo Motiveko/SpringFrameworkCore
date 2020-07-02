@@ -1,4 +1,4 @@
-package com.motiveko.testmaven.cli;
+package com.motiveko.testmaven.cli.others;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -50,11 +50,13 @@ public class ResourceTester {
 		// Interface이기때문에 Api doc을 참조해 적절한 구현체를 이용한다.
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext();
 		Resource resource = ctx.getResource("Dao.xml");
-		
+
 		try {
 			System.out.println(helper(resource.getInputStream()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		ctx.close();
 	}
 }

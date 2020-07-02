@@ -1,4 +1,4 @@
-package com.motiveko.testmaven.cli;
+package com.motiveko.testmaven.cli.entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

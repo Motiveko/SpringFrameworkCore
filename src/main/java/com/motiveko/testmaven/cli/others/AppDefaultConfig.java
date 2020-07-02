@@ -1,4 +1,4 @@
-package com.motiveko.testmaven.cli;
+package com.motiveko.testmaven.cli.others;
 
 
 import org.springframework.beans.factory.annotation.Value;
