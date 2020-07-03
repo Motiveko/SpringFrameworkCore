@@ -14,6 +14,9 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<!-- Tomcat Embedded -->
+		<tomcat.version>8.5.23</tomcat.version>
 	</properties>
 
 	<dependencies>
@@ -23,18 +26,15 @@
 			<artifactId>spring-context</artifactId>
 			<version>5.1.9.RELEASE</version>
 		</dependency>
-		<!-- spring-jdbc 4.3.3 이후로는 spring-tx가 포함되어서 나온다.  -->
-<!-- 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>5.1.9.RELEASE</version>
-		</dependency>		 -->
+		<!-- spring-jdbc 4.3.3 이후로는 spring-tx가 포함되어서 나온다. -->
+		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-tx</artifactId> 
+			<version>5.1.9.RELEASE</version> </dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>5.1.9.RELEASE</version>
-		</dependency>		
-			
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -131,12 +131,57 @@
 			<version>1.9.4</version>
 		</dependency>
 
-		<!-- JavaSE의 DataSource Interface의 구현체 중 하나, HikariCP-->
-	    <dependency>
-	        <groupId>com.zaxxer</groupId>
-	        <artifactId>HikariCP</artifactId>
-	        <version>3.4.5</version>
-	    </dependency>
+		<!-- JavaSE의 DataSource Interface의 구현체 중 하나, HikariCP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>3.4.5</version>
+		</dependency>
+
+
+		<!-- Tomcat Embedded -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper-el</artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jsp-api </artifactId>
+			<version>${tomcat.version}</version>
+		</dependency>
+
+		<!-- spring web servlet 관련 dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.2.7.RELEASE</version>
+		</dependency>
+
+
+		<!-- view resolver를 위한 thymeleaf -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>3.0.11.RELEASE</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -161,7 +206,7 @@
 							<transformers>
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.motiveko.testmaven</mainClass>
+									<mainClass>com.motiveko.testmaven.cli.web</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

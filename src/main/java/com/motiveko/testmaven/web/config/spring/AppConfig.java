@@ -1,4 +1,4 @@
-package com.motiveko.testmaven.cli.config;
+package com.motiveko.testmaven.web.config.spring;
 
 
 import javax.sql.DataSource;
@@ -15,9 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import com.motiveko.testmaven.cli.controller.MemberController;
-import com.motiveko.testmaven.cli.dao.MemberDao;
-import com.motiveko.testmaven.cli.service.MemberService;
+import com.motiveko.testmaven.web.controller.MemberController;
+import com.motiveko.testmaven.web.dao.MemberDao;
+import com.motiveko.testmaven.web.service.MemberService;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -28,14 +28,7 @@ import com.zaxxer.hikari.HikariDataSource;
 @EnableTransactionManagement//spring-tx, Config 내에 생성된 bean에 대해 @Transactional class/method 레벨  사용가능
 public class AppConfig {
 
-	
 
-	
-	/*
-	 * @Bean
-	 * 
-	 * @Lazy public Dao dao(Connection connection) { return new Dao(connection); }
-	 */
 	
 	@Bean
 	public LocalValidatorFactoryBean localValidatorFactoryBean () {
@@ -62,8 +55,8 @@ public class AppConfig {
 	@Bean
 	public MemberService service(MemberDao dao) { return new MemberService(dao); }
 	
-	@Bean
-	public MemberController controller(MemberService service) { return new MemberController(service); }
+//	@Bean
+//	public MemberController controller(MemberService service) { return new MemberController(service); }
 	
 	@Bean
 	public PlatformTransactionManager platformTransactionManager(DataSource dataSource) {
@@ -77,7 +70,7 @@ public class AppConfig {
 		return new JdbcTemplate(dataSource);
 	}
 	
-	@Bean
+	@Bean(initMethod = "init")
 	public MemberDao memberDao( JdbcTemplate jdbcTemplate) {
 		return new MemberDao(jdbcTemplate);
 	}

@@ -9,12 +9,18 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+//web.xml없이도 servlet사용이 가능하다.
+@WebFilter(
+		filterName="simpleFilter",
+		urlPatterns = {"/simple"}
+)
 public class SimpleFilter implements Filter {
 
 	@Override

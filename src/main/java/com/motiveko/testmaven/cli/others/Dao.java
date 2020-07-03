@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.motiveko.testmaven.cli.entity.Member;
+import com.motiveko.testmaven.web.entity.Member;
 
 import lombok.extern.slf4j.Slf4j;
 

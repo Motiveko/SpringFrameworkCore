@@ -1,4 +1,4 @@
-package com.motiveko.testmaven.cli.entity;
+package com.motiveko.testmaven.web.entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +8,13 @@ import lombok.*;
 //@NoArgsConstructor //default constructor
 //@ RequiredArgsConstructor //@NonNull 붙은 필드만 사용하는 constructor
 @AllArgsConstructor // constructor
-@Data // 겟, 셋, 이꼴해쉬, 투스트링 등 종합세트
+ // 겟, 셋, 이꼴해쉬, 투스트링 등 종합세트
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Member{
 
 	// 필드
@@ -25,4 +31,5 @@ public class Member{
 			e.printStackTrace();
 		}
 	}
+
 }

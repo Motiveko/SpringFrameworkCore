@@ -1,10 +1,12 @@
-package com.motiveko.testmaven.cli.service;
+package com.motiveko.testmaven.web.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.motiveko.testmaven.cli.dao.MemberDao;
+import com.motiveko.testmaven.web.dao.MemberDao;
+import com.motiveko.testmaven.web.entity.Member;
 
 import lombok.AllArgsConstructor;
 
@@ -17,10 +19,11 @@ public class MemberService {
 	private MemberDao memberDao;
 	
 	@Transactional
-	public void insert(String username, String password) throws SQLException {	
+	public void insert(String username, String password){	
+		//JDBC template은 exception을 날리지 않으므로 throws필요없다.
 		memberDao.insert(username,password);					
 	}
-	public void print() throws SQLException {
-		memberDao.print();
+	public List<Member> list() {
+		return memberDao.list();
 	}
 }

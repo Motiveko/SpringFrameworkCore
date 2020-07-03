@@ -1,0 +1,16 @@
+<html>
+<head>
+<title>멤버출력</title>
+</head>
+<body>
+ 	anc
+		<!-- th: thymeleaf 사용가능 -->
+	<ul th:each="member, iState : ${members}">
+		<li th:text="${member.username}"></li>
+		<li th:text="${member.password}"></li>
+
+
+	</ul>
+
+</body>
+</html>
