@@ -26,7 +26,7 @@ public class MemberDao {
 	@PostConstruct
 	void init() {
 		jdbcTemplate.update("create table member(id int auto_increment, username varchar(255) not null, password varchar(255) not null, primary key(id))");
-		jdbcTemplate.update("insert into member(username, password) values('고동기','1234')");
+		jdbcTemplate.update("insert into member(username, password) values('motiveko','1234')");
 	}
 	
 	//dao에 직접 datasource를 DI해서 dao에서 직접 트랜잭션을 가져다가 관리하는게 아닌, jdbcTemplate을 DI해서 간접적으로 쓴다(추상화)
@@ -71,6 +71,7 @@ public class MemberDao {
 		(resultSet,i)->new Member(resultSet)
 		);
 		list.forEach(x->log.info(">> Member : " + x.getUsername() + "/" + x.getPassword()));
+		
 		
 		
 		return list;//mvc로 리팩토링 과정에서 바꿈

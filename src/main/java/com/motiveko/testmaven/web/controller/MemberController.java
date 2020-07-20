@@ -1,15 +1,18 @@
 package com.motiveko.testmaven.web.controller;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.motiveko.testmaven.web.entity.Member;
+import com.motiveko.testmaven.web.model.MemberDto;
 import com.motiveko.testmaven.web.service.MemberService;
 
 import lombok.AllArgsConstructor;
@@ -38,9 +41,16 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/create")
-	public String create() {
-		memberService.insert("username", "password");
-		return "create";
+	public String create(MemberDto dto) {
+		// RequestParam 말고 Dto 객체로 받을 수 있다.
+		// Dto의 필드명을 form-input tag의 neme과 같게하면 자동으로 매핑!
+
+	
+//		ModelAndView mav = new ModelAndView("create");
+		memberService.insert(dto.getUsername(),dto.getPassword());
+		
+		
+		return "redirect:index";
 	}
 	
 	

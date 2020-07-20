@@ -1,16 +1,70 @@
-<html>
-<head>
-<title>멤버출력</title>
-</head>
-<body>
- 	anc
+
+<!-- bootstrap의 Starter template 그대로 가져ㅁ옴-->
+<!doctype html>
+<html lang="kr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-8">
+				<form action="create">
+					<div class="form-group">
+						<label for="">username</label>
+						<input type="text" name="username" class="form-control" placeholder="Insert Username" />
+					</div>
+					<div class="form-group">
+						<label for="">password</label>
+						<input type="text" name="password" class="form-control" placeholder="Insert Password" />
+					</div>
+					<button type="submit" class="btn btn-primary"> Submit</button>
+				</form>
+			</div>
+		</div>
+
+		<br/>
+		
+		<div class="row justify-content-md-center">
+			<div class="col-8">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Username</th>
+							<th>Password</th>
+						</tr>	
+					</thead>
+					<tbody>
+						<tr th:each="member, iState : ${members}">
+							<th th:text="${iState.index +1}"></th>
+							<th th:text="${member.username}"></th>
+							<th th:text="${member.password}"></th>							
+					</tbody>
+				</table>
+		
+			</div>
+		</div>		
+	</div>  
+  
 		<!-- th: thymeleaf 사용가능 -->
-	<ul th:each="member, iState : ${members}">
+<!-- 	<ul th:each="member, iState : ${members}">
 		<li th:text="${member.username}"></li>
 		<li th:text="${member.password}"></li>
+	</ul> 
+-->
 
-
-	</ul>
-
-</body>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
 </html>
