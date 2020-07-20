@@ -8,17 +8,45 @@ import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.w3c.dom.views.AbstractView;
 
 import com.motiveko.testmaven.web.config.spring.AppConfig;
 import com.motiveko.testmaven.web.config.spring.MvcConfig;
+import com.motiveko.testmaven.web.config.spring.SecurityConfig;
 
 
 public class TestmavenInitializer
-		implements WebApplicationInitializer{
+		implements WebApplicationInitializer
+//		extends AbstractAnnotationConfigDispatcherServletInitializer
+		{
+
+/*
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+				// 밑에 root에 등록하는것과 비슷
+		return new Class[] {AppConfig.class, MvcConfig.class, SecurityConfig.class};
+	}
+
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		// 루트 매핑
+		return new String[] {"/"};	
+	}
+	
+*/	
+ 
+ 	// implements WebApplicationInitializer 로 사용했을 때
+ 	  
+ 	 
 	// WebApplicationInitializer :: api문서 참조
 	// servlet 3.0기반으로 만들어진 interface, 기존의 web.xml로 설정하던 servlet context과 달리 progream으로 설정할 수 있는 servlet context
-
-	
 	@Override //tomcat 실행하면 자동으로 이거 찾아서 실행한다.
 	public void onStartup(ServletContext container) throws ServletException {
 			// 이 자체가 스프링 컨테이너로 돌아간다.
@@ -29,6 +57,7 @@ public class TestmavenInitializer
 	      System.out.println("안녕하세요");
 	      rootContext.register(AppConfig.class);
 	      rootContext.register(MvcConfig.class);
+	      rootContext.register(SecurityConfig.class);
 	      System.out.println("반갑습니다.");
 
 	      // Manage the lifecycle of the root application context
@@ -46,5 +75,6 @@ public class TestmavenInitializer
 	      dispatcher.setLoadOnStartup(1);
 	      dispatcher.addMapping("/"); //root url 이하로는 이 dispathcer가 동작, dispatcher를 여러개 만들어서 /a , /b ...로 주소 분기 시킬수 있지만 보통 root하나만 만든다.
 	}
+
 
 }
