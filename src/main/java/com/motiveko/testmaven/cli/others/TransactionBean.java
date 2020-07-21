@@ -24,7 +24,6 @@ public class TransactionBean {
 	@Pointcut("execution(* com.motiveko.testmaven.cli.Dao2.insert())")
 	public void transactionPointcut() {}
 		
-		
 	// @..Advice("pointcutMethod")
 	@Around("transactionPointcut()")
 	// 일반적으로는 void가 아니라 결과값을 Object형태로 만들어 반환해주는 형태를 쓴다.

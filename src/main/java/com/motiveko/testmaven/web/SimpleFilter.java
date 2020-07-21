@@ -61,6 +61,4 @@ public class SimpleFilter implements Filter {
 		
 		writer.println("filter - hello world!");
 	}
-
-	
 }

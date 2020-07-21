@@ -31,5 +31,4 @@ public class Member{
 			e.printStackTrace();
 		}
 	}
-
 }
