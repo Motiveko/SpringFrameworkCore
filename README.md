@@ -11,6 +11,6 @@
   * Resources
   * Validation
   * SpEL
-  * Aspect Oriented Programming With Spring(AspectJ)
+  * Aspect Oriented Programming With Spring(AOP)
   * Spring Security
   
