@@ -12,8 +12,10 @@
   * IoC Container And Beans
   * Resources
   * Validation
-  * jdbc
+  * datasource, jdbc
   * SpEL
+  * Enviromental Abstraction
+  * Annotation Based Configuration
   * Aspect Oriented Programming With Spring(AOP)
   * Spring Security
   * etc..
