@@ -4,10 +4,12 @@
 
 #### 참고자료
   * [Spring core refrence doc](https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#spring-core)
-  
+
+#### Build
+ * Maven
   
 #### 학습내용
-  * The IoCContainer
+  * IoC Container And Beans
   * Resources
   * Validation
   * SpEL
